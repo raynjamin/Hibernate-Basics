@@ -20,7 +20,6 @@ public class MicroBlogController {
         return "home";
     }
 
-
     @RequestMapping(path = "/add-message", method = RequestMethod.POST)
     public String addMessage(String message) {
         Message m = new Message(message);
@@ -29,13 +28,15 @@ public class MicroBlogController {
     }
 
     @RequestMapping(path = "/edit-message/{id}", method = RequestMethod.GET)
-    public String editMessage(Model model, Integer id) {
+    public String editMessage(Model model, @PathVariable(value = "id") Integer id) { // here if we don't add @pathvariable,
+        // then you would need to take
+        //out the action in edit message, because you can't refer to the ID.
+        model.addAttribute("messageId", id);
         return "editMessage";
     }
 
-
     @RequestMapping(path = "/edit-message/{id}", method = RequestMethod.POST)
-    public String editMessage(@PathVariable (value = "id") Integer id, String message) {
+    public String editMessage(@PathVariable(value = "id") Integer id, String message) {
         Message m = messages.findOne(id);
         m.text = message;
         messages.save(m);
