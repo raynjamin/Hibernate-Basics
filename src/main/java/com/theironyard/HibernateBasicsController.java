@@ -1,6 +1,7 @@
 package com.theironyard;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,15 +24,18 @@ public class HibernateBasicsController {
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model, HttpSession session) {
-        List<Message> messageList = (List)messages.findAll();
+        List<Message> messageList = (List)messages.findAll(new Sort("id"));
+
         model.addAttribute("name", session.getAttribute("userName"));
         model.addAttribute("messageList", messageList);
+
         return "home";
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public String login(HttpSession session, String userName) {
         session.setAttribute("userName", userName);
+
         return "redirect:/";
     }
 
@@ -39,17 +43,21 @@ public class HibernateBasicsController {
     public String addMessage(String message) {
         Message m = new Message(message);
         messages.save(m);
+
         return "redirect:/";
     }
 
     @RequestMapping(path = "/delete-message", method = RequestMethod.POST)
     public String deleteMessage(Integer id) {
         messages.delete(id);
+
         return "redirect:/";
     }
 
     @RequestMapping(path = "/edit-message/{id}", method = RequestMethod.GET)
-    public String home(Model model, Integer id) {
+    public String home(Model model, @PathVariable(value = "id") Integer id) {
+        model.addAttribute("id", id);
+
         return "edit";
     }
 
@@ -58,6 +66,7 @@ public class HibernateBasicsController {
         Message m = messages.findOne(id);
         m.text = edit;
         messages.save(m);
+
         return "redirect:/";
     }
 
