@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @Controller
 public class MicroblogSpringController {
@@ -15,7 +15,7 @@ public class MicroblogSpringController {
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model) {
-        List<Message> messageList = (List) messages.findAll();
+        ArrayList<Message> messageList = (ArrayList) messages.findAll();
         model.addAttribute("messages", messageList);
         return "home";
     }
