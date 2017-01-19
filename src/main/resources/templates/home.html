@@ -1,5 +1,6 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <body>
+<h1>"Welcome to Micro-Blog"</h1>
 <form action="/add-message" method="post">
     <input type="text" placeholder="Write your message" name="message"/>
     <button type="submit">submit</button>
@@ -7,9 +8,11 @@
 
 <ol>
     {{#messages}}
-    <li>{{ message }} </li>
+    <li><b>{{ message }} </b></li>
+    Click to edit
+    <a href="/edit-message?id={{id}}">Edit</a>
     {{/messages}}
-
 </ol>
+
 </body>
 </html>

@@ -1,10 +1,14 @@
 package com.example;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -15,10 +19,13 @@ import java.util.List;
 public class MessageController {
     @Autowired
     MessageRepository messages;
+    List messageList;
+
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model) {
-        List<Message> messageList = (List)messages.findAll();
+        //List<Message> messageList = (List)messages.findAll();
+        messageList = (List)messages.findAll();
         model.addAttribute("messages", messageList);
         return "home";
     }
@@ -32,16 +39,31 @@ public class MessageController {
         return "redirect:/";
     }
 
-    /*@RequestMapping(path = "/delete-message/:id", method = RequestMethod.GET)
-    public String deleteMessage(int id){
-            messages.delete(id);
+/*
+    @RequestMapping(path = "/edit-message/{id}", method = RequestMethod.GET)
+    public String updatedMessage(Message message){
+        List<Message> messageList =(List)messages.findOne(message.getId());
+
         return "home";
     }*/
 
-    @RequestMapping(path = "/delete-message/:id", method = RequestMethod.GET)
-    public String deleteMessage(int id){
-        messages.delete(id);
+
+
+   @RequestMapping(path = "/edit-message/:id", method = RequestMethod.POST)
+   public String updatedMessage(Message oldMessage,String newMessage){
+       Message tempmessage = messages.findOne(oldMessage.getId());
+       tempmessage.setMessage(newMessage);
+       addMessage(tempmessage.getMessage());
+
+
+       messageList =(List)messages.findOne(oldMessage.getId());
+        messages.delete(messageList);
+        addMessage(newMessage);
+        Message updatedMessage = new Message(newMessage);
+        messages.save(updatedMessage);
         return "home";
     }
+
+
 
 }
