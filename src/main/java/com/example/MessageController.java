@@ -32,15 +32,10 @@ public class MessageController {
         return "redirect:/";
     }
 
-    @RequestMapping(path = "/edit-message/:id", method = RequestMethod.GET)
-    public String editMessage (int id, Model model) {
-        model.addAttribute("id", id);
-        return "editMessage";
-    }
-
-    @RequestMapping(path = "/edit-message/:id", method = RequestMethod.POST)
-    public String editMessage (String message) {
-        Message newMessage  = new Message(message);
+    @RequestMapping(path = "/edit-message", method = RequestMethod.POST)
+    public String editMessage (String message, int messageId) {
+        Message newMessage  = messages.findOne(messageId);
+        newMessage.message = message;
         messages.save(newMessage);
         return "redirect:/";
     }

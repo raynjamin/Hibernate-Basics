@@ -4,10 +4,15 @@
     <input type="text" placeholder="Write a message" name="message"/>
     <button type="submit">Submit</button>
 </form>
-<ol>
+<ul>
     {{#messages}}
-    <li>{{message}}<a href="/edit-message ? id = {{id}}"> edit</a> </li>
+    <li>{{id}} {{message}}</li>
     {{/messages}}
-</ol>
+</ul>
+<form action="/edit-message" method="post">
+    <input type="number" placeholder="message ID" name="messageId"/>
+    <input type="text" placeholder="Edit your message" name="message"/>
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>
