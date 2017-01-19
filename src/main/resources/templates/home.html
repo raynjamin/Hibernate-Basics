@@ -2,20 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MicroBlog</title>
 </head>
 <body>
-CHECK CHECK 1 2
+Write your message here.
 <form action="/add-message" method="post">
-    <input type="text" placeholder="Write message." name="messageText">
+    <input placeholder="Write message." name="text">
     <button type="submit"> Add Message</button>
 </form>
+Edit the message here.
+<form action="/edit-messages" method="post">
+    <input type="number" placeholder="#id" name="textId"/>
+    <input type="text" placeholder="Write new message." name="text"/>
+    <input type="submit"/>
+    <ul>
+        {{#messages}}
+        <li>{{id}} {{text}}</li>
+        {{/messages}}
+    </ul>
+</form>
 
-<ol>
-    {{#messages}}
-        <li>{{text}}</li>
-    {{/messages}}
-</ol>
+
 
 </body>
 </html>

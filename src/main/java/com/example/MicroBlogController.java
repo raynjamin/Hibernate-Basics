@@ -15,8 +15,8 @@ public class MicroBlogController {
     private MessageRepository messages;
 
     @RequestMapping(path = "/add-message", method = RequestMethod.POST)
-    public String addMessage(String messageText) {
-        Message message = new Message(messageText);
+    public String addMessage(String text) {
+        Message message = new Message(text);
         messages.save(message);
         return "redirect:/";
     }
@@ -26,5 +26,15 @@ public class MicroBlogController {
         List<Message> messageList = (List) messages.findAll();
         model.addAttribute("messages", messageList);
         return "home";
+    }
+
+    @RequestMapping(path = "/edit-messages", method = RequestMethod.POST)
+    public String editMessages(String text, int textId) {
+        Message message = messages.findOne(textId);
+
+        message.text = text;
+        messages.save(message);
+
+        return "redirect:/";
     }
 }
