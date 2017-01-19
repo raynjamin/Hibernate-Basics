@@ -32,9 +32,15 @@ public class MessageController {
         return "redirect:/";
     }
 
-    @RequestMapping(path = "/delete-message", method = RequestMethod.GET)
+    /*@RequestMapping(path = "/delete-message/:id", method = RequestMethod.GET)
     public String deleteMessage(int id){
+            messages.delete(id);
+        return "home";
+    }*/
 
+    @RequestMapping(path = "/delete-message/:id", method = RequestMethod.GET)
+    public String deleteMessage(int id){
+        messages.delete(id);
         return "home";
     }
 
