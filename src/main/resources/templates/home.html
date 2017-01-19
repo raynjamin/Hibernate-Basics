@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MessageHome</title>
+</head>
+<body>
+<form action="/add-message" method="post">
+<input type="text" placeholder="Name" name="userName"/>
+<input type="text" placeholder="Message" name="userMessage"/>
+<button type="submit">Add Message</button>
+</form>
+
+<ol>
+    {{#messages}}
+    <li>{{userName}} {{userMessage}}</li>
+    {{/messages}}
+</ol>
+
+</body>
+</html>
