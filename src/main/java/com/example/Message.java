@@ -15,11 +15,24 @@ public class Message {
         @Column(nullable = false)
         String message;
 
+        @Column(nullable = false)
+        int userId;
+
         public Message() {
+        }
+
+        public Message(String message) {
+                this.message = message;
         }
 
         public Message(String name, String message) {
             this.name = name;
             this.message = message;
+        }
+
+        public Message(String name, String message, int userId) {
+                this.name = name;
+                this.message = message;
+                this.userId = userId;
         }
 }

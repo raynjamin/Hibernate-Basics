@@ -10,10 +10,14 @@
     <input type="text" placeholder="Enter your message:" name="message"/>
     <button type="submit">Submit Message</button>
 </form>
-
+<oi>
+    {{#messages}}
+    <li>{{name}}</li>
+    {{/messages}}
+</oi>
 <ol>
     {{#messages}}
-    <li>{{name}} {{message}}</li>
+    <li>{{message}}</li>
     {{/messages}}
 </ol>
 </body>

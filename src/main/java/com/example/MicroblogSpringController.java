@@ -12,8 +12,21 @@ import java.util.ArrayList;
 public class MicroblogSpringController {
     @Autowired
     MessageRepository messages;
+    UserRepository users;
 
-    @RequestMapping(path = "/", method = RequestMethod.GET)
+    @RequestMapping(path ="/", method = RequestMethod.GET)
+    public String login(Model model) {
+        return "login";
+    }
+
+    @RequestMapping(path ="/add-user", method = RequestMethod.GET)
+    public String addUser(String name) {
+        User currentUser = new User(name);
+        users.save(currentUser);
+        return "redirect:/home";
+    }
+
+    @RequestMapping(path = "/home", method = RequestMethod.GET)
     public String home(Model model) {
         ArrayList<Message> messageList = (ArrayList) messages.findAll();
         model.addAttribute("messages", messageList);
@@ -24,6 +37,6 @@ public class MicroblogSpringController {
     public String addMessage(String name, String message) {
         Message currentMessage = new Message(name, message);
         messages.save(currentMessage);
-        return "redirect:/";
+        return "redirect:/home";
     }
 }
