@@ -39,29 +39,12 @@ public class MessageController {
         return "redirect:/";
     }
 
-    @RequestMapping(path = "/edit-message/:id", method = RequestMethod.GET)
-    public String editMessage(Message oldMessage,String newMessage){
-        Message tempMessage = messages.findOne(oldMessage.getId());
-        tempMessage.setMessage(newMessage);
-        addMessage(tempMessage.getMessage());
-        return "home";
-    }
-
-
-
-   @RequestMapping(path = "/edit-message/:id", method = RequestMethod.POST)
-   public String updatedMessage(Message oldMessage,String newMessage){
-       Message tempMessage = messages.findOne(oldMessage.getId());
-       tempMessage.setMessage(newMessage);
-       addMessage(tempMessage.getMessage());
-
-
-       messageList =(List)messages.findOne(oldMessage.getId());
-        messages.delete(messageList);
-        addMessage(newMessage);
-        Message updatedMessage = new Message(newMessage);
-        messages.save(updatedMessage);
-        return "home";
+    @RequestMapping(path = "/edit-message", method = RequestMethod.POST)
+    public String editMessage(String message, int messageId){
+        Message newMessage = messages.findOne(messageId);
+        newMessage.message = message;
+        messages.save(newMessage);
+        return "redirect:/";
     }
 
 

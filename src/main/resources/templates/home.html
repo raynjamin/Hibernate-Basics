@@ -6,13 +6,20 @@
     <button type="submit">submit</button>
 </form>
 
-<ol>
+
     {{#messages}}
-    <li><b>{{ message }} </b></li>
-    Click to edit
-    <a href="/edit-message?id={{id}}">Edit</a>
+    <li>{{id}} {{ message }} </li>
     {{/messages}}
-</ol>
+
+
+<h1>Enter your new message</h1>
+<form action="/edit-message" method="post">
+    <input type="text" placeholder="Message ID" name="messageId"/>
+    <input type="text" placeholder="Write your new message" name="message"/>
+    <button type="submit">submit</button>
+</form>
+
+<h1></h1>
 
 </body>
 </html>
