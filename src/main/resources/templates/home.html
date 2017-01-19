@@ -2,9 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+CHECK CHECK 1 2
+<form action="/add-message" method="post">
+    <input type="text" placeholder="Write message." name="messageText">
+    <button type="submit"> Add Message</button>
+</form>
+
+<ol>
+    {{#messages}}
+        <li>{{text}}</li>
+    {{/messages}}
+</ol>
+
 </body>
 </html>

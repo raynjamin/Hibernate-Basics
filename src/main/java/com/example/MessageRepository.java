@@ -1,7 +1,7 @@
 package com.example;
 
-/**
- * Created by Joe on 1/18/17.
- */
-public class MessagesRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface MessageRepository extends CrudRepository<Message, Integer> {
+
 }
