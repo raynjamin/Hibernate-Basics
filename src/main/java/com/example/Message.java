@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "messages")
 public class Message {
-
+a
     @Id
     @GeneratedValue
     int id;
