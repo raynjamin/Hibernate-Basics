@@ -1,12 +1,12 @@
 <html>
 <body>
 <form action="/create-message" method="post">
-    <input type="text" placeholder="Write a message" name="newMessage"/>
+    <input type="text" placeholder="Write a message" name="message"/>
     <button type="submit">Submit</button>
 </form>
 <ol>
     {{#messages}}
-    <li>{{message}}</li>
+    <li>{{message}}<a href="/edit-message ? id = {{id}}"> edit</a> </li>
     {{/messages}}
 </ol>
 </body>
