@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Micro Blog</title>
+    <style>
+    body {background-color: powderblue;}
+    h1   {color: blue; text-align: center;}
+    ul   {text-align: center;}
+    li   {color: red; font-family: courier; text-align: justify; font-size: 100%;}
+    form {text-align: center;}
+    </style>
 </head>
 <body>
+<h1>Welcome to the Micro Blog!</h1>
+<br>
 <form action="/add-message" method="post">
-    <input type="text" placeholder="Enter user name:" name="name"/>
     <input type="text" placeholder="Enter your message:" name="message"/>
     <button type="submit">Submit Message</button>
 </form>
-<oi>
-    {{#messages}}
-    <li>{{name}}</li>
-    {{/messages}}
-</oi>
-<ol>
+<ul style = "list-style-type:none">
     {{#messages}}
     <li>{{message}}</li>
     {{/messages}}
-</ol>
+</ul>
 </body>
 </html>

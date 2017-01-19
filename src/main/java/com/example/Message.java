@@ -10,13 +10,10 @@ public class Message {
         int id;
 
         @Column(nullable = false)
-        String name;
-
-        @Column(nullable = false)
         String message;
 
-        @Column(nullable = false)
-        int userId;
+//        @Column(nullable = false)
+//        User user;
 
         public Message() {
         }
@@ -25,14 +22,8 @@ public class Message {
                 this.message = message;
         }
 
-        public Message(String name, String message) {
-            this.name = name;
-            this.message = message;
-        }
-
-        public Message(String name, String message, int userId) {
-                this.name = name;
-                this.message = message;
-                this.userId = userId;
-        }
+//        public Message(String message, User user) {
+//                this.message = message;
+//                this.user = user;
+//        }
 }
