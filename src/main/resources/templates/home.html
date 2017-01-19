@@ -1,0 +1,18 @@
+<html>
+<body>
+<form action="/create-message" method="post">
+    <input type="text" placeholder="Write a message" name="message"/>
+    <button type="submit">Submit</button>
+</form>
+<ul>
+    {{#messages}}
+    <li>{{id}} {{message}}</li>
+    {{/messages}}
+</ul>
+<form action="/edit-message" method="post">
+    <input type="number" placeholder="message ID" name="messageId"/>
+    <input type="text" placeholder="Edit your message" name="message"/>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
