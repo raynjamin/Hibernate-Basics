@@ -19,21 +19,17 @@ import java.util.List;
 public class MessageController {
     @Autowired
     MessageRepository messages;
-    List messageList;
 
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model) {
-        //List<Message> messageList = (List)messages.findAll();
-        messageList = (List)messages.findAll();
+        List<Message> messageList = (List)messages.findAll();
         model.addAttribute("messages", messageList);
         return "home";
     }
 
     @RequestMapping(path = "/add-message", method = RequestMethod.POST)
     public String addMessage (String message){
-        /*System.out.println("The message is:");
-        System.out.println(message);*/
         Message newMessage = new Message(message);
         messages.save(newMessage);
         return "redirect:/";
