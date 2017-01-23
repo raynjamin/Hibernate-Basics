@@ -1,0 +1,25 @@
+<html>
+<body>
+<h1>Twitish</h1>
+<form action="/add-message" method="post">
+    <input type="text" placeholder="Write your message" name="message"/>
+    <button type="submit">submit</button>
+</form>
+
+
+{{#messages}}
+<li>{{id}} {{ message }} </li>
+{{/messages}}
+
+
+<h1>Enter your new message</h1>
+<form action="/edit-message" method="post">
+    <input type="text" placeholder="Message ID" name="messageId"/>
+    <input type="text" placeholder="Write your new message" name="message"/>
+    <button type="submit">submit</button>
+</form>
+
+<h1></h1>
+
+</body>
+</html>
