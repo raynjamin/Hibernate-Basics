@@ -37,8 +37,8 @@ public class MicroblogSpringController {
     }
 
     @RequestMapping(path ="/add-user", method = RequestMethod.GET)
-    public String addUser(String name) {
-        User currentUser = new User(name);
+    public String addUser(String name, String password) {
+        User currentUser = new User(name, password);
         users.save(currentUser);
         return "redirect:/home";
     }
