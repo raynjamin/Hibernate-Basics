@@ -1,16 +1,30 @@
 <html xmlns="http://www.w3.org/1999/html">
 <body>
 <h1>"Welcome to Micro-Blog"</h1>
+
+{{^userName}}
+<form action ="/login" method ="post">
+    <input type="text" placeholder="name" name ="name" required>
+    <input type ="text" placeholder="password" name="password" required>
+    <button type ="submit">submit</button>
+</form>
+{{/userName}}
+
+{{#userName}}
+Welcome, {{.}}!
+
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+
 <form action="/add-message" method="post">
     <input type="text" placeholder="Write your message" name="message"/>
     <button type="submit">submit</button>
 </form>
 
-
     {{#messages}}
     <li>{{id}} {{ message }} </li>
     {{/messages}}
-
 
 <h1>Enter your new message</h1>
 <form action="/edit-message" method="post">
@@ -19,6 +33,7 @@
     <button type="submit">submit</button>
 </form>
 
+{{/userName}}
 <h1></h1>
 
 </body>

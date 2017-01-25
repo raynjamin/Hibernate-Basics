@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.entities.User;
+
 import javax.persistence.*;
 
 /**
@@ -15,7 +17,21 @@ public class Message {
     @Column(nullable = false)
     String message;
 
+    @ManyToOne
+    User user;
+
     public Message() {
+    }
+
+    public Message(int id, String message, User user) {
+        this.id = id;
+        this.message = message;
+        this.user = user;
+    }
+
+    public Message(String message, User user) {
+        this.message = message;
+        this.user = user;
     }
 
     public Message(String message) {
@@ -36,5 +52,13 @@ public class Message {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
