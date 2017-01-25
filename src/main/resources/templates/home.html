@@ -5,6 +5,22 @@
     <title>MicroBlog</title>
 </head>
 <body>
+{{^user}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Username" name="userName" required/>
+    <input type="password" placeholder="Password" name="password" required/>
+    <button type="submit">Login</button>
+</form>
+{{/user}}
+
+{{#user}}
+Welcome, {{name}}!
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br><br>
+{{/user}}
+<!--close tag for user could be in wrong spot-->
 Write your message here.
 <form action="/add-message" method="post">
     <input placeholder="Write message." name="text">
