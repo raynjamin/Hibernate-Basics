@@ -2,37 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Micro Blog</title>
-    <style>
-    body {background-color: powderblue;}
-    h1   {color: blue; text-align: center;}
-    ul   {text-align: center;}
-    li   {color: red; font-family: courier; text-align: justify; font-size: 100%;}
-    form {text-align: center;}
-    </style>
+    <title>MicroBlog with Password Protection</title>
 </head>
 <body>
+{{^user}}
 <form action="/login" method="post">
     <input type="text" placeholder="Username" name="userName" required/>
     <input type="password" placeholder="Password" name="password" required/>
     <button type="submit">Login</button>
 </form>
 {{/user}}
-<!--If user is present-->
+
 {{#user}}
-Welcome, {{name}} to your Micro Blog!
+Welcome, {{name}} to your Microblog!
 <form action="/logout" method="post">
     <button type="submit">Logout</button>
 </form>
-<br>
+<br><br>
+{{/user}}
+Create message:
 <form action="/add-message" method="post">
-    <input type="text" placeholder="Enter your message:" name="message"/>
-    <button type="submit">Submit Message</button>
+    <input placeholder="Write message." name="message">
+    <button type="submit"> Add Message</button>
 </form>
-<ul style = "list-style-type:none">
-    {{#messages}}
-    <li>{{message}} <a href = "/edit-message" id="id">Edit</a> </li>
-    {{/messages}}
-</ul>
+Edit message:
+<form action="/edit-messages" method="post">
+    <input type="number" placeholder="#id" name="messageId"/>
+    <input type="text" placeholder="Write new message." name="message"/>
+    <input type="submit"/>
+    <ul>
+        {{#messages}}
+        <li>{{id}} {{message}}</li>
+        {{/messages}}
+    </ul>
+</form>
 </body>
 </html>

@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "messages")
 public class Message {
+
         @Id
         @GeneratedValue
         int id;
@@ -12,21 +13,34 @@ public class Message {
         @Column(nullable = false)
         String message;
 
-//        @Column(nullable = false)
-//        User user;
+        @ManyToOne
+        User user;
 
         public Message() {
+        }
+
+        public Message(int id, String message, User user) {
+                this.id = id;
+                this.message = message;
+                this.user = user;
+        }
+
+        public Message(String message, User user) {
+                this.message = message;
+                this.user = user;
         }
 
         public Message(String message) {
                 this.message = message;
         }
 
-//        public Message(String message, User user) {
-//                this.message = message;
-//                this.user = user;
-//        }
+        public User getUser() {
+                return user;
+        }
 
+        public void setUser(User user) {
+                this.user = user;
+        }
 
         public int getId() {
                 return id;
