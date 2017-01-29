@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MicroBlog</title>
+</head>
+<body>
+{{^user}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Username" name="userName" required/>
+    <input type="password" placeholder="Password" name="password" required/>
+    <button type="submit">Login</button>
+</form>
+{{/user}}
+
+{{#user}}
+Welcome, {{name}}!
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br><br>
+{{/user}}
+<!--close tag for user could be in wrong spot-->
+Write your message here.
+<form action="/add-message" method="post">
+    <input placeholder="Write message." name="text">
+    <button type="submit"> Add Message</button>
+</form>
+Edit the message here.
+<form action="/edit-messages" method="post">
+    <input type="number" placeholder="#id" name="textId"/>
+    <input type="text" placeholder="Write new message." name="text"/>
+    <input type="submit"/>
+    <ul>
+        {{#messages}}
+        <li>{{id}} {{text}}</li>
+        {{/messages}}
+    </ul>
+</form>
+
+
+
+</body>
+</html>
