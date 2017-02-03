@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MicroBlog</title>
+</head>
+<body>
+<form action="/add-message" method="post">
+    <input type="text" placeholder="message" name="message"/>
+    <button type="submit">Add Message</button>
+</form>
+
+<ol>
+    {{#messages}}
+    <li>{{message}}</li>
+    {{/messages}}
+</ol>
+</body>
+</html>
